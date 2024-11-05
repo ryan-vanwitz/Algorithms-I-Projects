@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;DivideAndConquerSUB.java&apos; to &apos;in-class works/src/DivideAndConquer&apos;&#x0D;&#x0A;- Original project: &apos;in-class works&apos;&#x0D;&#x0A;- Destination element: &apos;in-class works/src/DivideAndConquer&apos;&#x0D;&#x0A;- Original element: &apos;recursion.DivideAndConquerSUB.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;DivideAndConquer" element1="/src&lt;recursion{DivideAndConquerSUB.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1715350907731" units="1" version="1.0"/>
+</session>

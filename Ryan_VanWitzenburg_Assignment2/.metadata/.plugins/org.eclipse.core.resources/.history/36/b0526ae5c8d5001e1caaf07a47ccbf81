@@ -1,0 +1,24 @@
+package PartV;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class personalPharmacy {
+    private Map<String, String> conditionToMedicine;
+
+    public personalPharmacy() {
+        conditionToMedicine = new HashMap<>();
+        conditionToMedicine.put("stomach flu", "Imodium");
+        conditionToMedicine.put("headache", "Advil");
+        conditionToMedicine.put("fever", "Aspirin");
+    }
+
+    public String getMedicineForCondition(String condition) {
+        return conditionToMedicine.get(condition);
+    }
+
+    public static void main(String[] args) {
+        PersonalPharmacy judysPharmacy = new PersonalPharmacy();
+        System.out.println("Medicine for headache: " + judysPharmacy.getMedicineForCondition("headache"));
+    }
+}

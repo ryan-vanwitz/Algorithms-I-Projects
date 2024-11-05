@@ -1,0 +1,26 @@
+package PartIV;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class StreamFlat {
+	
+	public static void main(String[] args) {
+        List<List<Integer>> grades = Arrays.asList(
+                Arrays.asList(87, 85, 75, 91),
+                Arrays.asList(88, 82, 79, 89),
+                Arrays.asList(65, 52, 49, 60)
+        );
+
+        long result = StreamFlat.getGoodGrades(grades);
+        System.out.println("Number of grades strictly larger than 85: " + result);
+    }
+	
+    public static long getGoodGrades(List<List<Integer>> grades) {
+        return grades.stream()
+                     .flatMap(List::stream)
+                     .filter(grade -> grade > 85)
+                     .count();
+    }
+}

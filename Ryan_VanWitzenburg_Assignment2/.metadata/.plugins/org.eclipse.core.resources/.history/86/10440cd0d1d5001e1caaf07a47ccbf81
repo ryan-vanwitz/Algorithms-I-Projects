@@ -1,0 +1,59 @@
+package PartV;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class ProfessionalPharmacy {
+    private Map<String, List<Pair<String, Integer>>> conditionToMedicinesAndStock;
+
+    public ProfessionalPharmacy() {
+        conditionToMedicinesAndStock = new HashMap<>();
+
+        // Adding medicines for stomach flu
+        List<Pair<String, Integer>> stomachFluMeds = new ArrayList<>();
+        stomachFluMeds.add(new Pair.of("Pepto-Bismol", 5));
+        stomachFluMeds.add(new Pair<>("Imodium", 8));
+        conditionToMedicinesAndStock.put("stomach flu", stomachFluMeds);
+
+        // Add more conditions and medicines as needed
+    }
+
+    public List<String> getMedicinesForCondition(String condition) {
+        List<Pair<String, Integer>> medicinesWithStock = conditionToMedicinesAndStock.get(condition);
+        List<String> medicines = new ArrayList<>();
+        if (medicinesWithStock != null) {
+            for (Pair<String, Integer> pair : medicinesWithStock) {
+                medicines.add(pair.getKey());
+            }
+        }
+        return medicines;
+    }
+
+    public int getStockForMedicine(String condition, String medicine) {
+        List<Pair<String, Integer>> medicinesWithStock = conditionToMedicinesAndStock.get(condition);
+        if (medicinesWithStock != null) {
+            for (Pair<String, Integer> pair : medicinesWithStock) {
+                if (pair.getKey().equals(medicine)) {
+                    return pair.getValue();
+                }
+            }
+        }
+        return 0; // Condition or medicine not found
+    }
+
+    public static void main(String[] args) {
+        ProfessionalPharmacy natashasPharmacy = new ProfessionalPharmacy();
+
+        // Example: Get medicines for stomach flu
+        List<String> stomachFluMeds = natashasPharmacy.getMedicinesForCondition("stomach flu");
+        System.out.println("Medicines for stomach flu: " + stomachFluMeds);
+
+        // Example: Get stock for Pepto-Bismol for stomach flu
+        int peptoBismolStock = natashasPharmacy.getStockForMedicine("stomach flu", "Pepto-Bismol");
+        System.out.println("Stock of Pepto-Bismol for stomach flu: " + peptoBismolStock);
+    }
+}

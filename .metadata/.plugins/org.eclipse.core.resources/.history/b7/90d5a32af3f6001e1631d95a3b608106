@@ -1,0 +1,29 @@
+package preSBproblems;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import caseStudy3.SortingClass;
+
+public class QuestionC<E extends Number & Comparable<? super E>> {
+
+	public static void main(String[] args) {
+		
+
+	}
+	
+	public List<E> questionC(List<E> list, E target) {
+		Collections.sort(list);
+		List<E> list = new ArrayList<>();
+		int begin = 0;
+		int end = list.size() - 1;
+		BigDecimal currMax = new BigDecimal(target.toString());
+		while (begin < end) {
+			
+		}
+		
+	}
+
+}

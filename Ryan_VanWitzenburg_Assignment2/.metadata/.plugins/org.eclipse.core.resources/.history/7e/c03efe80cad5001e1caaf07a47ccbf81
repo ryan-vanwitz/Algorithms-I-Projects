@@ -1,0 +1,36 @@
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+public class RealPharma {
+    private Map<String, Set<String>> medicineToConditions;
+    private Map<String, Integer> medicineStock;
+
+    public RealPharma() {
+        medicineToConditions = new HashMap<>();
+        medicineStock = new HashMap<>();
+        
+        Set<String> aspirinConditions = new HashSet<>();
+        aspirinConditions.add("fever");
+        aspirinConditions.add("pain");
+        aspirinConditions.add("blood clots");
+        medicineToConditions.put("Aspirin", aspirinConditions);
+        medicineStock.put("Aspirin", 20); // Initial stock for Aspirin
+
+    }
+
+    public Set<String> getConditionsForMedicine(String medicine) {
+        return medicineToConditions.get(medicine);
+    }
+
+    public int getStockForMedicine(String medicine) {
+        return medicineStock.getOrDefault(medicine, 0);
+    }
+
+    public static void main(String[] args) {
+        RealPharma realPharmacy = new RealPharma();
+        System.out.println("Conditions treated by Aspirin: " + realPharmacy.getConditionsForMedicine("Aspirin"));
+        System.out.println("Stock of Aspirin: " + realPharmacy.getStockForMedicine("Aspirin"));
+    }
+}

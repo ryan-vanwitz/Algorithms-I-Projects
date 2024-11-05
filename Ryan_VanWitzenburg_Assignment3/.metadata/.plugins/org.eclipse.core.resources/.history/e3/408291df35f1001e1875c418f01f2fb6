@@ -1,0 +1,47 @@
+package practiceProblems;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+public class Exercise5Pair<E extends Number & Comparable<? super E>> {
+
+	public static void main(String[] args) {
+    // Sample usage
+    Exercise5Pair test = new Exercise5Pair();
+    BigDecimal[] arr = {BigDecimal.valueOf(1), BigDecimal.valueOf(3), BigDecimal.valueOf(5), BigDecimal.valueOf(7), BigDecimal.valueOf(9)};
+    BigDecimal target = BigDecimal.valueOf(5);
+    Pair<Integer, Integer> result = test.lessOrGreater(arr, target);
+    System.out.println("Numbers less than or equal to " + target + ": " + result.getLeft());
+    System.out.println("Numbers strictly greater than " + target + ": " + result.getRight());
+}
+
+public Pair<Integer, Integer> lessOrGreater(BigDecimal[] arr, BigDecimal target) {
+    List<BigDecimal> list = Arrays.asList(arr);
+    Collections.sort(list); // Ensure the list is sorted
+    int index = Collections.binarySearch(list, target);
+    int lessOrEqualCount = 0;
+    int strictlyGreaterCount = 0;
+
+    if (index >= 0) {
+        // If the target exists in the array, count how many elements are less than or equal to it
+        for (int i = 0; i <= index; i++) {
+            if (arr[i].compareTo(target) <= 0) {
+                lessOrEqualCount++;
+            }
+        }
+        // Count how many elements are strictly greater than the target
+        strictlyGreaterCount = arr.length - lessOrEqualCount;
+    } else {
+        // If the target doesn't exist in the array, find the insertion point
+        index = -index - 1;
+        lessOrEqualCount = index;
+        strictlyGreaterCount = arr.length - index;
+    }
+
+    return Pair.of(lessOrEqualCount, strictlyGreaterCount);
+}
+}

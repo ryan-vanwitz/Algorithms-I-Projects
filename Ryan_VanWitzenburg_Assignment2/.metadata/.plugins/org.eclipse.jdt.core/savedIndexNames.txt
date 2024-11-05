@@ -1,0 +1,8 @@
+INDEX VERSION 1.134+C:\Users\rvanw\CSE374\Ryan_VanWitzenburg_Assignment2\.metadata\.plugins\org.eclipse.jdt.core
+3277872304.index
+3200140171.index
+1840295764.index
+2465018618.index
+941476417.index
+1007321307.index
+1865797976.index

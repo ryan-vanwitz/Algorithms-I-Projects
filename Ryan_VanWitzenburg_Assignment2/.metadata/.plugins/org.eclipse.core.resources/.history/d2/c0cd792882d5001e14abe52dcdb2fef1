@@ -1,0 +1,26 @@
+package main;
+
+import structures.RemovalArray;
+import org.apache.commons.lang3.time.StopWatch;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+
+	}
+	
+	public static void addToArray(RemovalArray<Integer> arr, int elements) {
+		 for (int i = 1; i <= elements; i++) {
+	            arr.add(i);
+	        }
+	}
+	
+	 public static long measureTime(RemovalArray<Integer> array, int n) {
+	        StopWatch stopWatch = StopWatch.createStarted();
+	        addToArray(array, n);
+	        stopWatch.stop();
+	        return stopWatch.getTime();
+	    }
+
+}

@@ -1,0 +1,153 @@
+package main;
+//package org.kodejava.commons.lang;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.apache.commons.lang.time.StopWatch;
+
+import structures.RemovalArray;
+import implementation.IncrementalArray;
+import implementation.SwapingArray;
+import implementation.DoublingArray;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+        RemovalArray<Integer> incrementalArray = new IncrementalArray<>();
+        RemovalArray<Integer> doublingArray = new DoublingArray<>();
+        RemovalArray<Integer> swapingArray = new SwapingArray<>();
+        
+        performAddingExperiments(doublingArray, "doubling.csv");
+        // performExperiments(incrementalArray, "incremental.csv");
+        performAddingExperiments(swapingArray, "swaping.csv");
+
+        testSwapingArray();
+        
+        performRemovingExperiments(doublingArray, "doublingRemove.csv");
+        // performRemovingExperiments(incrementalArray, "incrementalRemove.csv");
+        performRemovingExperiments(swapingArray, "swapingRemove.csv");
+
+	}
+	
+	public static void addToArray(RemovalArray<Integer> arr, int elements) {
+		 for (int i = 1; i <= elements; i++) {
+	            arr.add(i);
+	        }
+	}
+	
+	 public static long measureTime(RemovalArray<Integer> arr, int elements) {
+	        StopWatch stopWatch = new StopWatch();
+	        stopWatch.start();
+	        addToArray(arr, elements);
+	        stopWatch.stop();
+	        return stopWatch.getTime();
+	    }
+	 
+	 public static void performAddingExperiments(RemovalArray<Integer> arr, String filename) {
+		  try (FileWriter writer = new FileWriter(filename)) {
+	            writer.write("N,Repeat1,Repeat2,Repeat3,Repeat4,Repeat5,Repeat6,Repeat7,Repeat8,Repeat9,Repeat10\n");
+	            for (int n = 20000; n <= 400000; n += 20000) {
+	                StringBuilder result = new StringBuilder();
+	                System.out.println("*");
+	                result.append(n).append(",44");
+	                for (int i = 0; i < 10; i++) {
+	                	if (filename.equals("doubling.csv") ) {
+	                		arr = new DoublingArray<Integer>();
+	                	} else if (filename.equals("incremental.csv")){
+	                		arr = new IncrementalArray<Integer>();
+	                	} else {
+	                		arr = new SwapingArray<Integer>();
+	                	}
+	                    long time = measureTime(arr, n);
+	                    double timeInSeconds = time / 1000.0; // Convert time to seconds
+	                    result.append(timeInSeconds);
+	                    if (i < 9) {
+	                        result.append(",");
+	                    }
+	                }
+	                result.append("\n");
+	                writer.write(result.toString());
+	            }
+	            System.out.println("Experiments completed. Results saved in " + filename);
+	        } catch (IOException e) {
+	            System.err.println("Error writing to file: " + e.getMessage());
+	        }
+	 }
+	 
+	 public static void testSwapingArray() {
+	        SwapingArray<Integer> array = new SwapingArray<>();
+
+	        // Add elements to the array
+	        array.add(10);
+	        array.add(20);
+	        array.add(30);
+	        array.add(40);
+	        array.add(50);
+
+	        // Print the array before removal
+	        System.out.println("Array before removal:");
+	        printArray(array);
+
+	        // Remove element at index 2 (30)
+	        array.remove(2);
+
+	        // Print the array after removal
+	        System.out.println("\nArray after removal at index 2:");
+	        printArray(array);
+
+	        // Remove element 50
+	        array.remove(Integer.valueOf(50));
+
+	        // Print the array after removal
+	        System.out.println("\nArray after removal of element 50:");
+	        printArray(array);
+	    }
+	 
+	 public static void printArray(SwapingArray<Integer> array) {
+	        for (int i = 0; i < array.size(); i++) {
+	            System.out.print(array.find(i) + " ");
+	        }
+	        System.out.println();
+	    }
+	 
+	 public static void performRemovingExperiments(RemovalArray<Integer> arr, String filename) {
+		    try (FileWriter writer = new FileWriter(filename)) {
+		        writer.write("N,Repeat1,Repeat2,Repeat3,Repeat4,Repeat5,Repeat6,Repeat7,Repeat8,Repeat9,Repeat10\n");
+		        for (int n = 20000; n <= 400000; n += 20000) {
+		            StringBuilder result = new StringBuilder();
+		            result.append(n).append(",");
+		            System.out.println("*");
+		            for (int i = 0; i < 10; i++) {
+		                if (filename.equals("doublingRemove.csv")) {
+		                    arr = new DoublingArray<Integer>();
+		                } else if (filename.equals("incrementalRemove.csv")) {
+		                    arr = new IncrementalArray<Integer>();
+		                } else {
+		                    arr = new SwapingArray<Integer>();
+		                }
+		                populateArray(arr, n); 
+		                long time = measureTime(arr, n);
+	                    double timeInSeconds = time / 1000.0; // Convert time to seconds
+	                    result.append(timeInSeconds);
+		                if (i < 9) {
+		                    result.append(",");
+		                }
+		            }
+		            result.append("\n");
+		            writer.write(result.toString());
+		        }
+		        System.out.println("Experiments completed. Results saved in " + filename);
+		    } catch (IOException e) {
+		        System.err.println("Error writing to file: " + e.getMessage());
+		    }
+		}
+
+		public static void populateArray(RemovalArray<Integer> arr, int size) {
+		    arr.clear(); // Clear the array before populating
+		    for (int i = 0; i < size; i++) {
+		        arr.add(i);
+		    }
+		}
+}

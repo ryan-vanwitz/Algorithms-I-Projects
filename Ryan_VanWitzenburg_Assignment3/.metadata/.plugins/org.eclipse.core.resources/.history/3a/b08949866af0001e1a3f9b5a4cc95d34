@@ -1,0 +1,16 @@
+package practiceProblems;
+
+import java.util.List;
+
+public class Exercise3LargestYear {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public int largestYear(List<Pair<Integer,Integer>> list) {
+		
+	}
+
+}

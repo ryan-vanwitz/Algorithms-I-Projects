@@ -1,0 +1,38 @@
+package PartV;
+
+import org.apache.commons.collections4.Bag;
+import org.apache.commons.lang3.Bag.HashBag;
+
+public class Customer {
+    private Bag<String> basket;
+
+    public Customer() {
+        basket = new HashBag<>();
+    }
+
+    public void addToBasket(String prescription) {
+        basket.add(prescription);
+    }
+
+    public void removeFromBasket(String prescription) {
+        basket.remove(prescription);
+    }
+
+    public void displayBasket() {
+        System.out.println("Garnet's Basket:");
+        for (String prescription : basket.uniqueSet()) {
+            int count = basket.getCount(prescription);
+            System.out.println(prescription + ": " + count);
+        }
+    }
+
+    public static void main(String[] args) {
+        Customer garnet = new Customer();
+        garnet.addToBasket("Xanax");
+        garnet.addToBasket("Metformin");
+        garnet.addToBasket("Metformin");
+        garnet.addToBasket("Metformin");
+
+        garnet.displayBasket();
+    }
+}

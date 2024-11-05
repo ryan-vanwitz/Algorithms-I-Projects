@@ -1,0 +1,19 @@
+package swap;
+
+public class swap {
+
+	public static void main(String[] args) {
+		int x = 10;
+		int y = 6;
+		
+		
+		// int temp = x;
+		x = y;
+		y = y+y;
+		
+		System.out.println(x + " " + y);
+		// Space(variables made): 1
+		// Time(operations done): 3
+	}
+
+}

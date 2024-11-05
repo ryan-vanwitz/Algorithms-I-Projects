@@ -1,0 +1,15 @@
+package PartIV;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+public class StreamFilter {
+    public static List<String> getAnimals(List<Pair<String, Integer>> animals) {
+        return animals.stream()
+                      .filter(pair -> pair.getValue() > 50)
+                      .map(Pair::getKey)
+                      .collect(Collectors.toList());
+    }
+}

@@ -1,0 +1,20 @@
+package swap;
+
+public class swap {
+
+	public static void main(String[] args) {
+		double x = 10.9;
+		double y = -6;
+		
+		
+		// int temp = x;
+		x = x + y; // take the sum
+		y = x - y; // saves 
+		x = x- y;
+		
+		System.out.println(x + " " + y);
+		// Space(variables made): 1
+		// Time(operations done): 3
+	}
+
+}

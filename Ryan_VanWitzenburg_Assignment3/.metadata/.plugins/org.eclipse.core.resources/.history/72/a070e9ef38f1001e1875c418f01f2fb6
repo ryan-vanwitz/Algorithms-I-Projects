@@ -1,0 +1,24 @@
+package practiceProblems;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+public class Exercise6SortedMin {
+
+	public static void main(String[] args) {
+		Exercise6SortedMin test = new Exercise6SortedMin();
+		BigDecimal[] arr = { BigDecimal.valueOf(2), BigDecimal.valueOf(3), BigDecimal.valueOf(1), BigDecimal.valueOf(7),
+				BigDecimal.valueOf(9) };
+		Number result = test.findMinimum(arr);
+		System.out.println("Minimum is: " + result);
+	}
+
+	public Number findMinimum(BigDecimal[] arr) {
+		Arrays.sort(arr);
+        return arr[0];
+	}
+	
+
+}

@@ -1,0 +1,29 @@
+package PartV;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class ProfessionalPharmacy {
+    private Map<String, List<String>> conditionToMedicines;
+
+    public ProfessionalPharmacy() {
+        conditionToMedicines = new HashMap<>();
+        List<String> stomachFluMeds = new ArrayList<>();
+        stomachFluMeds.add("Pepto-Bismol");
+        stomachFluMeds.add("Imodium");
+        conditionToMedicines.put("stomach flu", stomachFluMeds);
+
+
+    }
+
+    public List<String> getMedicinesForCondition(String condition) {
+        return conditionToMedicines.get(condition);
+    }
+
+    public static void main(String[] args) {
+        ProfessionalPharmacy natashasPharmacy = new ProfessionalPharmacy();
+        System.out.println("Medicines for stomach flu: " + natashasPharmacy.getMedicinesForCondition("stomach flu"));
+    }
+}

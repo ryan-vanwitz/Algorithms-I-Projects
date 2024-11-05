@@ -1,0 +1,10 @@
+package practiceProblems;
+
+public class Exercise4FindShared {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

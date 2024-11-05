@@ -1,0 +1,69 @@
+package classes;
+
+import java.util.List;
+
+public class FindMin<E extends Comparable<? super E>> {
+
+	public static void main(String[] args) {
+		int[] array = { 3, 7, 2, 9, 5, -1 };
+		System.out.println("Minimum element: " + getMin(array));
+	}
+
+	// Part II Question #1
+
+	public static int getMin(int[] array) {
+		return getMinRecursive(array, 0, array.length - 1);
+	}
+
+	private static int getMinRecursive(int[] array, int leftIndex, int rightIndex) {
+		if (leftIndex == rightIndex) {
+			// Base case: when there's only one element
+			return array[leftIndex];
+		}
+		if (leftIndex == rightIndex - 1) {
+			// Base case: when there are two elements
+			if (array[leftIndex] < array[rightIndex]) {
+				return array[leftIndex];
+			} else {
+				return array[rightIndex];
+			}
+		}
+
+		// Recursive case: divide the array and compare the min of leftIndex and
+		// rightIndex halves
+		int middle = leftIndex + (rightIndex - leftIndex) / 2;
+		int minleftIndex = getMinRecursive(array, leftIndex, middle);
+		int minrightIndex = getMinRecursive(array, middle + 1, rightIndex);
+		if (minleftIndex < minrightIndex) {
+			return minleftIndex;
+		} else {
+			return minrightIndex;
+		}
+	}
+
+	// Part II Question #2
+
+	/*
+	 * Konstantin F's solution is not a good implementation of a recursive function
+	 * to find the mean. One of the many things wrong with it is the inefficient
+	 * recursion method. The function removes the elements in the list which
+	 * decreases its readability and modifies the original list, which may cause
+	 * issues later on. Additionally, the unnecessary initialization of variables
+	 * adds to the memory inefficiency of their solution.
+	 */
+
+	/*
+	 * RoyalHouse's code is somewhat better than Konstantin F's and we can improve
+	 * upon it below.
+	 */
+	public E minimum(List<E> t) {
+		if (t.size() == 1)
+			return t.get(0);
+	}
+
+	E first = t.get(0);
+	List<E> u = t.subList(1, t.size());
+	E min = minimum(u);return first.compareTo(min)<0?first:min;
+}
+
+}

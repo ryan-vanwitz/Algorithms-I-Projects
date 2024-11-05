@@ -1,0 +1,23 @@
+package implementation;
+
+import structures.RemovalArray;
+
+public class DoublingArray<E> implements RemovalArray<E> {
+	
+	public boolean add(E e) {
+		
+		return true;
+	}
+	
+	public boolean remove(int index) {
+		
+		return true;
+	}
+	
+	public boolean remove(E e) {
+		
+		return true;
+	}
+	
+	
+}

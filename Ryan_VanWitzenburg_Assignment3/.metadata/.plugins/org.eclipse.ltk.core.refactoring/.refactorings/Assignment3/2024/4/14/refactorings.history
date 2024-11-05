@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;practiceProblems.Exercise7CoutningSort.java&apos; to &apos;Exercise7CountingSort.java&apos;&#x0D;&#x0A;- Original project: &apos;Assignment3&apos;&#x0D;&#x0A;- Original element: &apos;practiceProblems.Exercise7CoutningSort.java&apos;&#x0D;&#x0A;- Renamed element: &apos;practiceProblems.Exercise7CountingSort.java&apos;" description="Rename compilation unit &apos;Exercise7CoutningSort.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src=/optional=/true=/=/maven.pomderived=/true=/&lt;practiceProblems{Exercise7CoutningSort.java" name="Exercise7CountingSort.java" references="false" stamp="1712082319121" version="1.0"/>
+</session>

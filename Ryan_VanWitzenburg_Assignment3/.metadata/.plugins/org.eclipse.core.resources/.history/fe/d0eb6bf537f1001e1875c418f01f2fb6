@@ -1,0 +1,15 @@
+package practiceProblems;
+
+public class Exercise6SortedMin {
+
+	public static void main(String[] args) {
+		 int[] nums1 = {15, 21, 35, 60, 3, 7, 9, 10};
+	        System.out.println("Minimum in Example 1: " + findMinimum(nums1)); // Output: 3
+
+	        // Example 2
+	        int[] nums2 = {5, 7, 9, 1, 2, 3, 4};
+	        System.out.println("Minimum in Example 2: " + findMinimum(nums2)); // Output: 1
+	    }
+	}
+
+}

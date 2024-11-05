@@ -1,0 +1,60 @@
+package preSBproblems;
+
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.List;
+import java.util.Arrays;
+
+public class QuestionC {
+
+    public static void main(String[] args) {
+        // Example list of bottle volumes (in mL)
+        List<BigDecimal> bottles = Arrays.asList(
+            new BigDecimal("50"),
+            new BigDecimal("100"),
+            new BigDecimal("150"),
+            new BigDecimal("75"),
+            new BigDecimal("125"),
+            new BigDecimal("200"),
+            new BigDecimal("25"),
+            new BigDecimal("175")
+        );
+
+        // Sort the list
+        Collections.sort(bottles);
+
+        // Find the combination and print result
+        if (findBottleCombination(bottles)) {
+            System.out.println("Combination found!");
+        } else {
+            System.out.println("No combination found.");
+        }
+    }
+
+    public static boolean findBottleCombination(List<BigDecimal> bottles) {
+        // Initialize indexes
+        int frontIndex = 0;
+        int backIndex = bottles.size() - 1;
+
+        // Loop until the indexes meet or pass each other
+        while (frontIndex < backIndex) {
+            // Calculate combined volume
+            BigDecimal combinedVolume = bottles.get(frontIndex).add(bottles.get(backIndex));
+
+            // If combined volume is exactly 200 mL, return true
+            if (combinedVolume.compareTo(new BigDecimal("200")) == 0) {
+                return true;
+            }
+            // If combined volume is less than 200 mL, move frontIndex forward
+            else if (combinedVolume.compareTo(new BigDecimal("200")) < 0) {
+                frontIndex++;
+            }
+            // If combined volume is more than 200 mL, move backIndex backward
+            else {
+                backIndex--;
+            }
+        }
+        // If no combination totaling 200 mL is found, return false
+        return false;
+    }
+}

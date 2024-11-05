@@ -1,0 +1,68 @@
+package classes;
+
+import java.util.List;
+
+public class FindMin<E extends Comparable<? super E>> {
+
+	public static void main(String[] args) {
+		int[] array = { 3, 7, 2, 9, 5, -1 };
+		System.out.println("Minimum element: " + getMin(array));
+	}
+	
+	
+	// Part II Question #1
+
+	public static int getMin(int[] array) {
+		return getMinRecursive(array, 0, array.length - 1);
+	}
+
+	private static int getMinRecursive(int[] array, int leftIndex, int rightIndex) {
+		if (leftIndex == rightIndex) {
+			// Base case: when there's only one element
+			return array[leftIndex];
+		} 
+		if (leftIndex == rightIndex - 1) {
+			// Base case: when there are two elements
+			if (array[leftIndex] < array[rightIndex]) {
+				return array[leftIndex];
+			} else {
+				return array[rightIndex];
+			}
+		} 
+		
+			// Recursive case: divide the array and compare the min of leftIndex and rightIndex halves
+			int middle = leftIndex + (rightIndex - leftIndex) / 2;
+			int minleftIndex = getMinRecursive(array, leftIndex, middle);
+			int minrightIndex = getMinRecursive(array, middle + 1, rightIndex);
+			if (minleftIndex < minrightIndex) {
+				return minleftIndex;
+			} else {
+				return minrightIndex;
+			}
+		}
+
+	// Part II Question #2
+
+	/*
+	 * Konstantin F's solution is garbage because ...
+	 * 
+	 */
+
+	/*
+	 * RoyalHouse's code is somewhat better than Konstantin F's because ...
+	 * 
+	 */
+	public static E minimum(List<E> t) {
+		int minInt;
+		if (t.size() == 1) {
+			return t.get(0);
+		} else {
+			int first = t.get(0);
+			List<Integer> u = t.subList(1, t.size());
+			minInt = Math.min(first, u.get(0));
+			minInt = IntegerList.minimum(u);
+		}
+		return minInt;
+	}
+
+}

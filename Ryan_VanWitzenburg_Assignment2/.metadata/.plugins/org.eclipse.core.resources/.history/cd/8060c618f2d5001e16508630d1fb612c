@@ -1,0 +1,30 @@
+package PartIV;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+public class StreamFilter {
+	
+	 public static void main(String[] args) {
+		 List<Pair<String, Integer>> animals = Arrays.asList(
+	                Pair.of("Parrot", 32),
+	                Pair.of("Rhinoceros", 250),
+	                Pair.of("Fly", 2),
+	                Pair.of("Fly", 3),
+	                Pair.of("Parrot", 65)
+	        );
+		 
+	        List<String> result = StreamFilter.getAnimals(animals);
+	        System.out.println("Animals over 50 in height: " + result);
+	    }
+	
+    public static List<String> getAnimals(List<Pair<String, Integer>> animals) {
+        return animals.stream()
+                      .filter(pair -> pair.getValue() > 50)
+                      .map(Pair::getKey)
+                      .collect(Collectors.toList());
+    }
+}

@@ -1,0 +1,18 @@
+package classes;
+
+public class Heap {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public E getMinimumRecursive(){
+		return getMinimumRecursive(array[lastUsedSpot]);
+	}
+	
+	private E getMinimumRecursive(E minSoFar){
+		// complete...
+	}
+
+}

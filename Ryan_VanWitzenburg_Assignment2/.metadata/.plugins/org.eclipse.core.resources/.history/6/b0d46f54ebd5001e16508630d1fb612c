@@ -1,0 +1,44 @@
+package implementation;
+
+import java.util.Arrays;
+import structures.RemovalArray;
+
+public class IncrementalArray<E> implements RemovalArray<E> {
+	
+	private Object[] items;
+	private int size;
+	
+	public IncrementalArray() {
+		this.items = new Object[1];
+		this.size = 0;
+	}
+	
+	public boolean add(E e) {
+		if (items.length == size) {
+			items = Arrays.copyOf(items, items.length + 1);
+		}
+		items[size] = e;
+		size++;
+		return true;
+	}
+	
+	public boolean remove(int index) {
+		if (index >= size || index < 0) {
+			throw new IndexOutOfBoundsException("Failed removing element. Index Out Of Bounds");
+		}
+		System.arraycopy(items, index + 1, items, index, size - index - 1);
+        size--;
+		items[size] = null;
+		return true;
+	}
+	
+	public boolean remove(E e) {
+		for (int i = 0; i < size; i++) {
+            if (items[i].equals(e)) {
+                remove(i);
+                return true;
+            }
+        }
+		return true;
+	}	
+}

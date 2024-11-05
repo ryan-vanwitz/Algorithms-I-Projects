@@ -1,0 +1,59 @@
+package practiceProblems;
+
+import java.util.Arrays;
+
+public class Exercise7CoutningSort {
+
+public static void main(String[] args) {
+		
+		int[] arr = {0,3,5,3,0,0,2,0,4,2,3,6};
+		int[] ryan = nonComparisonSort(arr);
+		
+		for(int i = 0; i < ryan.length; i++) {
+			System.out.print(ryan[i] + ",");
+		}
+		
+	}
+	
+public static int[] nonComparisonSort(int[] arr) {
+    // Find the maximum and minimum values in the array
+    int min = Arrays.stream(arr).min().getAsInt();
+    int max = Arrays.stream(arr).max().getAsInt();
+
+    // Adjust the minimum value if it's negative
+    if (min < 0) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] -= min;
+        }
+        max -= min;
+    }
+
+    // Create histogram with an extra space to handle negative values
+    int[] histogram = new int[max + 1];
+
+    // Count occurrences of each element in the array
+    for (int i = 0; i < arr.length; i++) {
+        histogram[arr[i]]++;
+    }
+
+    // Sort the array using counting sort algorithm
+    int index = 0;
+    for (int bin = 0; bin < histogram.length; bin++) {
+        while (histogram[bin] > 0) {
+            arr[index] = bin;
+            histogram[bin]--;
+            index++;
+        }
+    }
+
+    // Adjust back if the minimum was negative
+    if (min < 0) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] += min;
+        }
+    }
+
+    return arr;
+}
+		
+	}

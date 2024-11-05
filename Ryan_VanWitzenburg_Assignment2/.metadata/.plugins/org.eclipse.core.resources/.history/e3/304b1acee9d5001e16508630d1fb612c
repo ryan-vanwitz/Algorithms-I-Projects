@@ -1,0 +1,30 @@
+package implementation;
+
+import java.util.Arrays;
+import structures.RemovalArray;
+
+public class SwapingArray<E> implements RemovalArray<E> {
+	
+	private Object[] items;
+	private int size;
+	
+	public SwapingArray() {
+		this.items = new Object[1];
+		this.size = 0;
+	}
+	
+	public boolean add(E e) {
+		
+		return true;
+	}
+	
+	public boolean remove(int index) {
+		
+		return true;
+	}
+	
+	public boolean remove(E e) {
+		
+		return true;
+	}	
+}

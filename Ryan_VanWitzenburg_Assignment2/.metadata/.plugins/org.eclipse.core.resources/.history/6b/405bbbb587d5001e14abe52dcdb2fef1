@@ -1,0 +1,56 @@
+package main;
+//package org.kodejava.commons.lang;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.apache.commons.lang.time.StopWatch;
+
+import structures.RemovalArray;
+import implementation.IncrementalArray;
+import implementation.DoublingArray;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+        RemovalArray<Integer> incrementalArray = new IncrementalArray<>();
+        RemovalArray<Integer> doublingArray = new DoublingArray<>();
+
+        performExperiments(incrementalArray, "incremental.csv");
+        performExperiments(doublingArray, "doubling.csv");
+
+	}
+	
+	public static void addToArray(RemovalArray<Integer> arr, int elements) {
+		 for (int i = 1; i <= elements; i++) {
+	            arr.add(i);
+	        }
+	}
+	
+	 public static long measureTime(RemovalArray<Integer> arr, int elements) {
+	        StopWatch stopWatch = new StopWatch();
+	        stopWatch.start();
+	        addToArray(arr, elements);
+	        stopWatch.stop();
+	        return stopWatch.getTime();
+	    }
+	 
+	 public static void performExperiments(RemovalArray<Integer> arr, String filename) {
+		 try (FileWriter writer = new FileWriter(filename)) {
+	            for (int n = 20000; n <= 400000; n += 20000) {
+	                double totalTime = 0;
+	                for (int i = 0; i < 10; i++) {
+	                    long time = measureTime(arr, n);
+	                    totalTime += time;
+	                }
+	                double averageTime = totalTime / 10.0;
+	                String result = String.format("%d,%f%n", n, averageTime);
+	                writer.write(result);
+	            }
+	            System.out.println("Experiments completed. Results saved in " + filename);
+	        } catch (IOException e) {
+	            System.err.println("Error writing to file: " + e.getMessage());
+	        }
+	 }
+}
